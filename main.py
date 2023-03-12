@@ -15,10 +15,8 @@ def select_2(discipline_id):
     """
     Знайти студента із найвищим середнім балом з певного предмета
     """
-    r = session.query(Discipline.name,
-                      Student.fullname,
-                      func.round(func.avg(Grade.grade), 2).label('avg_grade')
-                      ) \
+    r = session.query(Discipline.name, Student.fullname,
+        func.round(func.avg(Grade.grade), 2).label('avg_grade')) \
         .select_from(Grade) \
         .join(Student) \
         .join(Discipline) \
@@ -34,8 +32,7 @@ def select_3(discipline_id):
     Знайти середній бал у групах з певного предмета
     """
     r = session.query(Discipline.name, Group.name,
-                      func.round(func.avg(Grade.grade), 2).label('avg_grade')
-                      ) \
+        func.round(func.avg(Grade.grade), 2).label('avg_grade')) \
         .select_from(Grade) \
         .join(Student) \
         .join(Discipline) \
@@ -105,8 +102,7 @@ def select_8(Teacher_id):
     Знайти середній бал, який ставить певний викладач зі своїх предметів
     """
     r = session.query(Teacher.fullname, Discipline.name,
-                      func.round(func.avg(Grade.grade), 2).label('avg_grade')
-                      ) \
+        func.round(func.avg(Grade.grade), 2).label('avg_grade')) \
         .select_from(Teacher) \
         .join(Discipline) \
         .join(Grade) \
